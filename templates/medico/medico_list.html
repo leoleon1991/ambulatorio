@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+Lista de Médicos
+
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Apellido</td>
+			<td>Cedula</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% if medicos %}
+		{% for medico in medicos %}
+		<tr>
+			<td>{{ medico.id }}</td>
+			<td>{{ medico.nombre }}</td>
+			<td>{{ medico.apellido }}</td>
+			<td>{{ medico.cedula }}</td>
+		</tr>
+		{% endfor %}
+		
+		{% else %}
+		<h1>No hay registros de Médicos</h1>
+		
+		{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}

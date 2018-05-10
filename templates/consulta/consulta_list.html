@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+Lista de Consultas
+
+{% endblock %}
+
+{% block content %}
+
+{% if consultas %}
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Paciente</td>
+			<td>Fecha de Consulta</td>
+			<td>Hora de Consulta</td>
+			<td>Medico Asignado</td>
+		</tr>
+	</thead>
+	<tbody>
+	{% for consulta in consultas %}
+		<tr>
+			<td>{{ consulta.id }}</td>
+			<td>{{ consulta.paciente.nombres }} {{ consulta.paciente.apellidos }}</td>
+			<td>{{ consulta.fecha_consulta }}</td>
+			<td>{{ consulta.hora_consulta }}</td>
+			<td>{{ consulta.medico.nombre }} {{ consulta.medico.apellido }}</td>
+		</tr>
+		{% endfor %}
+		
+{% else %}
+	<h1>No hay registros de Consultas</h1>
+		
+{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}

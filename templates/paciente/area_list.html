@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+Lista de Áreas
+
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Ubicación</td>
+			<td>Jefe</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% if areas %}
+		{% for area in areas %}
+		<tr>
+			<td>{{ area.id }}</td>
+			<td>{{ area.nombre }}</td>
+			<td>{{ area.ubicacion }}</td>
+			<td>{{ area.jefe }}</td>
+		</tr>
+		{% endfor %}
+		
+		{% else %}
+		<h1>No hay registros de areas</h1>
+		
+		{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}

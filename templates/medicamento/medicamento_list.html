@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+Lista de Medicamentos
+
+{% endblock %}
+
+{% block content %}
+
+{% if medicamentos %}
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Presentación</td>
+			<td>Vía</td>
+			<td>Cantidad</td>
+			<td>Fecha de Elaboración</td>
+			<td>Fecha de Vencimiento</td>
+		</tr>
+	</thead>
+	<tbody>
+	{% for medicamento in medicamentos %}
+		<tr>
+			<td>{{ medicamento.id }}</td>
+			<td>{{ medicamento.nombre }}</td>
+			<td>{{ medicamento.presentacion }}</td>
+			<td>{{ medicamento.via }}</td>
+			<td>{{ medicamento.cantidad }}</td>
+			<td>{{ medicamento.fecha_elaboracion }}</td>
+			<td>{{ medicamento.fecha_vencimiento }}</td>
+		</tr>
+		{% endfor %}
+		
+{% else %}
+	<h1>No hay registros de Medicamentos</h1>
+		
+{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}

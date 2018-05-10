@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+Lista de Pacientes
+
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombres</td>
+			<td>Apellidos</td>
+			<td>Cedula</td>
+			<td>Fecha de Nacimiento</td>
+			<td>Edad</td>
+			<td>Genero</td>
+			<td>Tipo de Sangre</td>
+			<td>Telefono</td>
+			<td>Correo</td>
+			<td>Fumador</td>
+			<td>Alergico</td>
+			<td>Motivo</td>
+			<td>Area</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% if pacientes %}
+		{% for paciente in pacientes %}
+		<tr>
+			<td>{{ paciente.id }}</td>
+			<td>{{ paciente.nombres }}</td>
+			<td>{{ paciente.apellidos }}</td>
+			<td>{{ paciente.cedula }}</td>
+			<td>{{ paciente.fecha_nacimiento }}</td>
+			<td>{{ paciente.edad }}</td>
+			<td>{{ paciente.genero }}</td>
+			<td>{{ paciente.tipo_sangre }}</td>
+			<td>{{ paciente.telefono }}</td>
+			<td>{{ paciente.correo }}</td>
+			<td>{{ paciente.fumador }}</td>
+			<td>{{ paciente.alergico }}</td>
+			<td>{{ paciente.motivo }}</td>
+			<td>{{ paciente.area.nombre }}</td>
+		</tr>
+		{% endfor %}
+		
+		{% else %}
+		<h1>No hay registros de pacientes</h1>
+		
+		{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}
