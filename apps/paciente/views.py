@@ -39,3 +39,14 @@ def area_list(request):
 	area = Area.objects.all()
 	contexto = {'areas': area}
 	return render(request, 'paciente/area_list.html', contexto)
+
+def paciente_edit(request, id_paciente):
+	paciente = Paciente.objects.get(id=id_paciente)
+	if request.method == 'GET':
+		form = PacienteForm(instance=paciente)
+	else:
+		form = PacienteForm(request.POST, instance=paciente)
+		if form.is_valid():
+			form.save()
+		return redirect('paciente:paciente_listar')
+	return render(request, 'paciente/paciente_form.html', {'form':form})
