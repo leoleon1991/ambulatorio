@@ -19,10 +19,12 @@ Lista de Medicamentos
 			<td>Cantidad</td>
 			<td>Fecha de Elaboración</td>
 			<td>Fecha de Vencimiento</td>
+			<td>Opciones</td>
 		</tr>
 	</thead>
 	<tbody>
-	{% for medicamento in medicamentos %}
+		{% if medicamentos %}
+		{% for medicamento in medicamentos %}
 		<tr>
 			<td>{{ medicamento.id }}</td>
 			<td>{{ medicamento.nombre }}</td>
@@ -31,14 +33,19 @@ Lista de Medicamentos
 			<td>{{ medicamento.cantidad }}</td>
 			<td>{{ medicamento.fecha_elaboracion }}</td>
 			<td>{{ medicamento.fecha_vencimiento }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'medicamento:medicamento_editar' medicamento.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'medicamento:medicamento_eliminar' medicamento.id %}">Eliminar</a>
+			</td>
 		</tr>
 		{% endfor %}
 		
-{% else %}
+	{% else %}
 	<h1>No hay registros de Medicamentos</h1>
 		
-{% endif %}
+	{% endif %}
 	</tbody>
+{% endif %}
 </table>
 
 {% endblock %}

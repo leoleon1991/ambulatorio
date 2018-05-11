@@ -19,7 +19,24 @@ def consulta_view(request):
 	return render(request, 'consulta/consulta_form.html', {'form': form})
 
 def consulta_list(request):
-	consulta = Consulta.objects.all()
+	consulta = Consulta.objects.all().order_by('id')
 	contexto = {'consultas': consulta}
 	return render(request, 'consulta/consulta_list.html', contexto)
 
+def consulta_edit(request, id_consulta):
+	consulta = Consulta.objects.get(id=id_consulta)
+	if request.method == 'GET':
+		form = ConsultaForm(instance=consulta)
+	else:
+		form = ConsultaForm(request.POST, instance=consulta)
+		if form.is_valid():
+			form.save()
+		return redirect('consulta:consulta_listar')
+	return render(request, 'consulta/consulta_form.html', {'form': form})
+
+def consulta_delete(request, id_consulta):
+	consulta = Consulta.objects.get(id=id_consulta)
+	if request.method == 'POST':
+		consulta.delete()
+		return redirect('consulta:consulta_listar')
+	return render(request, 'consulta/consulta_delete.html', {'consulta': consulta})

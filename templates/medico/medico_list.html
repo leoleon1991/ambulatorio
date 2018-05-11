@@ -8,6 +8,7 @@ Lista de Médicos
 
 {% block content %}
 
+{% if medicos %}
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -15,6 +16,7 @@ Lista de Médicos
 			<td>Nombre</td>
 			<td>Apellido</td>
 			<td>Cedula</td>
+			<td>Opciones</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,6 +27,10 @@ Lista de Médicos
 			<td>{{ medico.nombre }}</td>
 			<td>{{ medico.apellido }}</td>
 			<td>{{ medico.cedula }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'medico:medico_editar' medico.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'medico:medico_eliminar' medico.id %}">Eliminar</a>
+			</td>
 		</tr>
 		{% endfor %}
 		
@@ -33,6 +39,7 @@ Lista de Médicos
 		
 		{% endif %}
 	</tbody>
+{% endif %}
 </table>
 
 {% endblock %}

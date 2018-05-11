@@ -31,12 +31,12 @@ def area_view(request):
 	return render(request, 'paciente/area_form.html', {'form': form})
 
 def paciente_list(request):
-	paciente = Paciente.objects.all()
+	paciente = Paciente.objects.all().order_by('id')
 	contexto = {'pacientes': paciente}
 	return render(request, 'paciente/paciente_list.html', contexto)
 
 def area_list(request):
-	area = Area.objects.all()
+	area = Area.objects.all().order_by('id')
 	contexto = {'areas': area}
 	return render(request, 'paciente/area_list.html', contexto)
 
@@ -50,3 +50,28 @@ def paciente_edit(request, id_paciente):
 			form.save()
 		return redirect('paciente:paciente_listar')
 	return render(request, 'paciente/paciente_form.html', {'form':form})
+
+def area_edit(request, id_area):
+	area = Area.objects.get(id=id_area)
+	if request.method == 'GET':
+		form = AreaForm(instance=area)
+	else:
+		form = AreaForm(request.POST, instance=area)
+		if form.is_valid():
+			form.save()
+		return redirect('paciente:area_listar')
+	return render(request, 'paciente/area_form.html', {'form': form})
+
+def paciente_delete(request, id_paciente):
+	paciente = Paciente.objects.get(id=id_paciente)
+	if request.method == 'POST':
+		paciente.delete()
+		return redirect('paciente:paciente_listar')
+	return render(request, 'paciente/paciente_delete.html', {'paciente':paciente})
+
+def area_delete(request, id_area):
+	area = Area.objects.get(id=id_area)
+	if request.method == 'POST':
+		area.delete()
+		return redirect('paciente:area_listar')
+	return render(request, 'paciente/area_delete.html', {'area':area})

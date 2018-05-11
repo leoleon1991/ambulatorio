@@ -8,6 +8,7 @@ Lista de Pacientes
 
 {% block content %}
 
+{% if pacientes %}
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -25,6 +26,7 @@ Lista de Pacientes
 			<td>Alergico</td>
 			<td>Motivo</td>
 			<td>Area</td>
+			<td>Opciones</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -45,6 +47,10 @@ Lista de Pacientes
 			<td>{{ paciente.alergico }}</td>
 			<td>{{ paciente.motivo }}</td>
 			<td>{{ paciente.area.nombre }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'paciente:paciente_editar' paciente.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'paciente:paciente_eliminar' paciente.id %}">Eliminar</a>
+			</td>
 		</tr>
 		{% endfor %}
 		
@@ -53,6 +59,7 @@ Lista de Pacientes
 		
 		{% endif %}
 	</tbody>
+{% endif %}
 </table>
 
 {% endblock %}

@@ -15,6 +15,7 @@ Lista de Áreas
 			<td>Nombre</td>
 			<td>Ubicación</td>
 			<td>Jefe</td>
+			<td>Opciones</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,6 +26,10 @@ Lista de Áreas
 			<td>{{ area.nombre }}</td>
 			<td>{{ area.ubicacion }}</td>
 			<td>{{ area.jefe }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'paciente:area_editar' area.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'paciente:area_eliminar' area.id %}">Eliminar</a>
+			</td>
 		</tr>
 		{% endfor %}
 		

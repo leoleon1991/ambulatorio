@@ -19,6 +19,24 @@ def medico_view(request):
 	return render(request, 'medico/medico_form.html', {'form': form})
 
 def medico_list(request):
-	medico = Medico.objects.all()
+	medico = Medico.objects.all().order_by('id')
 	contexto = {'medicos': medico}
 	return render(request, 'medico/medico_list.html', contexto)
+
+def medico_edit(request, id_medico):
+	medico = Medico.objects.get(id=id_medico)
+	if request.method == 'GET':
+		form = MedicoForm(instance=medico)
+	else:
+		form = MedicoForm(request.POST, instance=medico)
+		if form.is_valid():
+			form.save()
+		return redirect('medico:medico_listar')
+	return render(request, 'medico/medico_form.html', {'form': form})
+
+def medico_delete(request, id_medico):
+	medico = Medico.objects.get(id=id_medico)
+	if request.method == 'POST':
+		medico.delete()
+		return redirect('medico:medico_listar')
+	return render(request, 'medico/medico_delete.html', {'medico': medico})

@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+Eliminar Área
+
+{% endblock %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<h3>¿Desea eliminar el registro de {{ area.nombre }}</h3>
+	<button class="btn btn-danger" type="submit"> Sí, eliminar </button>
+	<a class="btn btn-default" href="{% url 'paciente:area_listar' %}"> Cancelar </a>
+</form>
+
+{% endblock %}

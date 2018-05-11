@@ -19,6 +19,26 @@ def medicamento_view(request):
 	return render(request, 'medicamento/medicamento_form.html', {'form': form})
 
 def medicamento_list(request):
-	medicamento = Medicamento.objects.all()
+	medicamento = Medicamento.objects.all().order_by('id')
 	contexto = {'medicamentos': medicamento}
 	return render(request, 'medicamento/medicamento_list.html', contexto)
+
+def medicamento_edit(request, id_medicamento):
+	medicamento = Medicamento.objects.get(id=id_medicamento)
+	if request.method == 'GET':
+		form = MedicamentoForm(instance=medicamento)
+	else: 
+		form = MedicamentoForm(request.POST, instance=medicamento)
+		if form.is_valid():
+			form.save()
+		return redirect('medicamento:medicamento_listar')
+	return render(request, 'medicamento/medicamento_form.html', {'form': form})
+
+def medicamento_delete(request, id_medicamento):
+	medicamento = Medicamento.objects.get(id=id_medicamento)
+	if request.method == 'POST':
+		medicamento.delete()
+		return redirect('medicamento:medicamento_listar')
+	return render(request, 'medicamento/medicamento_delete.html', {'medicamento': medicamento})
+
+

@@ -17,9 +17,11 @@ Lista de Consultas
 			<td>Fecha de Consulta</td>
 			<td>Hora de Consulta</td>
 			<td>Medico Asignado</td>
+			<td>Opciones</td>
 		</tr>
 	</thead>
 	<tbody>
+	{% if consultas %}
 	{% for consulta in consultas %}
 		<tr>
 			<td>{{ consulta.id }}</td>
@@ -27,6 +29,10 @@ Lista de Consultas
 			<td>{{ consulta.fecha_consulta }}</td>
 			<td>{{ consulta.hora_consulta }}</td>
 			<td>{{ consulta.medico.nombre }} {{ consulta.medico.apellido }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'consulta:consulta_editar' consulta.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'consulta:consulta_eliminar' consulta.id %}">Eliminar</a>
+			</td>
 		</tr>
 		{% endfor %}
 		
@@ -35,6 +41,7 @@ Lista de Consultas
 		
 {% endif %}
 	</tbody>
+{% endif %}
 </table>
 
 {% endblock %}
