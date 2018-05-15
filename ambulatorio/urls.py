@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.views import login
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -22,4 +23,6 @@ urlpatterns = [
     url(r'^medico/', include('apps.medico.urls', namespace="medico")),
     url(r'^medicamento/', include('apps.medicamento.urls', namespace="medicamento")),
     url(r'^consulta/', include('apps.consulta.urls', namespace="consulta")),
+    url(r'^usuario/', include('apps.usuario.urls', namespace="usuario")),
+    url(r'^$', login, {'template_name':'index.html'}, name='login'),
 ]

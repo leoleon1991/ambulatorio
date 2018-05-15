@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
 from apps.paciente.forms import PacienteForm, AreaForm
-from django.views.generic import CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from apps.paciente.models import Paciente, Area
 
 # Create your views here.
@@ -75,3 +75,48 @@ def area_delete(request, id_area):
 		area.delete()
 		return redirect('paciente:area_listar')
 	return render(request, 'paciente/area_delete.html', {'area':area})
+
+class PacienteList(ListView):
+	model = Paciente
+	template_name = 'paciente/paciente_list.html'
+	#paginate_by = 5
+
+class AreaList(ListView):
+	model = Area
+	template_name = 'paciente/area_list.html'
+	#paginate_by = 5
+
+class PacienteCreate(CreateView):
+	model = Paciente
+	form_class = PacienteForm
+	template_name = 'paciente/paciente_form.html'
+	succes_url = reverse_lazy('paciente:paciente_listar')
+
+class AreaCreate(CreateView):
+	model = Area
+	form_class = AreaForm
+	template_name = 'paciente/area_form.html'
+	succes_url = reverse_lazy('paciente:area_listar')
+
+class PacienteUpdate(UpdateView):
+	model = Paciente
+	form_class = PacienteForm
+	template_name = 'paciente/paciente_form.html'
+	succes_url = reverse_lazy('paciente:paciente_listar')
+
+class AreaUpdate(UpdateView):
+	model = Area
+	form_class = AreaForm
+	template_name = 'paciente/area_form.html'
+	succes_url = reverse_lazy('paciente:area_listar')
+
+class PacienteDelete(DeleteView):
+	model = Paciente
+	template_name = 'paciente/paciente_delete.html'
+	succes_url = reverse_lazy('paciente:paciente_listar')
+
+class AreaDelete(DeleteView):
+	model = Area
+	template_name = 'paciente/area_delete.html'
+	succes_url = reverse_lazy('paciene:area_listar')
+

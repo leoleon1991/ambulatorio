@@ -8,7 +8,7 @@
   {% endblock %}
 
   <link rel="stylesheet" href="{% static 'css/bootstrap.min3.css' %}">
-  <title>{% block title %} Document {% endblock %} </title>
+  <title>{% block title %} Ambulatorio Karin {% endblock %} </title>
 </head>
 <body>
 <div class="container">
@@ -21,43 +21,43 @@
                   <nav class="navbar navbar-default">
                       <div class="container-fluid">
                           <div class="navbar-header">
-                            <a class="navbar-brand" href="#">Home</a>
+                            <a class="navbar-brand" href="{% url 'paciente:index_paciente' %}">Home</a>
                           </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                           <ul class="nav navbar-nav">
                               <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pacientes <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                  <li><a href="{#}">Registrar</a></li>
-                                  <li><a href="{#}">Listar</a></li>
+                                  <li><a href="{% url 'paciente:paciente_registrar' %}">Registrar</a></li>
+                                  <li><a href="{% url 'paciente:paciente_listar' %}">Listar</a></li>
                                 </ul>
                               </li>
                               <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Médicos<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{#}">Registrar</a></li>
-                                    <li><a href="{#}">Listar </a></li>
+                                    <li><a href="{% url 'medico:medico_registrar' %}">Registrar</a></li>
+                                    <li><a href="{% url 'medico:medico_listar' %}">Listar </a></li>
                                 </ul>
                               </li>
                               <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Áreas<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                  <li><a href="www.google.co.ve">Registrar</a></li>
-                                  <li><a href="{#}">Listar</a></li>
+                                  <li><a href="{% url 'paciente:area_registrar' %}">Registrar</a></li>
+                                  <li><a href="{% url 'paciente:area_listar' %}">Listar</a></li>
                                 </ul>
                               </li>
                               <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Medicamentos <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                  <li><a href="www.google.co.ve">Registrar</a></li>
-                                  <li><a href="{#}">Listar</a></li>
+                                  <li><a href="{% url 'medicamento:medicamento_registrar' %}">Registrar</a></li>
+                                  <li><a href="{% url 'medicamento:medicamento_listar' %}">Listar</a></li>
                                 </ul>
                               </li>
                               <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Consultas <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                  <li><a href="www.google.co.ve">Registrar</a></li>
-                                  <li><a href="{#}">Listar</a></li>
+                                  <li><a href="{% url 'consulta:consulta_registrar' %}">Registrar</a></li>
+                                  <li><a href="{% url 'consulta:consulta_listar' %}">Listar</a></li>
                                 </ul>
                               </li>
                           </ul>

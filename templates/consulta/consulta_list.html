@@ -8,7 +8,7 @@ Lista de Consultas
 
 {% block content %}
 
-{% if consultas %}
+{% if object_list %}
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -21,14 +21,14 @@ Lista de Consultas
 		</tr>
 	</thead>
 	<tbody>
-	{% if consultas %}
-	{% for consulta in consultas %}
+	{% if object_list %}
+	{% for consulta in object_list %}
 		<tr>
 			<td>{{ consulta.id }}</td>
 			<td>{{ consulta.paciente.nombres }} {{ consulta.paciente.apellidos }}</td>
 			<td>{{ consulta.fecha_consulta }}</td>
 			<td>{{ consulta.hora_consulta }}</td>
-			<td>{{ consulta.medico.nombre }} {{ consulta.medico.apellido }}</td>
+			<td>{{ consulta.medico_asignado.nombre }} {{ consulta.medico_asignado.apellido }}</td>
 			<td>
 				<a class="btn btn-primary" href="{% url 'consulta:consulta_editar' consulta.id %}">Editar</a>
 				<a class="btn btn-danger" href="{% url 'consulta:consulta_eliminar' consulta.id %}">Eliminar</a>

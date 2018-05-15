@@ -8,7 +8,7 @@ Lista de Médicos
 
 {% block content %}
 
-{% if medicos %}
+{% if object_list %}
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -20,8 +20,8 @@ Lista de Médicos
 		</tr>
 	</thead>
 	<tbody>
-		{% if medicos %}
-		{% for medico in medicos %}
+		{% if object_list %}
+		{% for medico in object_list %}
 		<tr>
 			<td>{{ medico.id }}</td>
 			<td>{{ medico.nombre }}</td>

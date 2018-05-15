@@ -16,8 +16,8 @@ class ConsultaForm(forms.ModelForm):
 
 		labels = {
 			'paciente': 'Paciente',
-			'fecha_consulta': 'Fecha de la Consulta',
-			'hora_consulta': 'Hora de la Consulta',
+			'fecha_consulta': 'Fecha de la Consulta (DD-MM-YYYY)',
+			'hora_consulta': 'Hora de la Consulta (HH:MM)',
 			'medico_asignado': 'Medico asignado para la Consulta',
 		}
 

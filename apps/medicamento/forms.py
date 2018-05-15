@@ -20,8 +20,8 @@ class MedicamentoForm(forms.ModelForm):
 			'presentacion': 'Presentación',
 			'via': 'Vía',
 			'cantidad': 'Cantidad',
-			'fecha_elaboracion': 'Fecha de Elaboración',
-			'fecha_vencimiento': 'Fecha de Vencimiento',
+			'fecha_elaboracion': 'Fecha de Elaboración (DD-MM-YYYY)',
+			'fecha_vencimiento': 'Fecha de Vencimiento (DD-MM-YYYY)',
 		}
 
 		widgets = {

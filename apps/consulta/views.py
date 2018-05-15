@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect	
 from django.http import HttpResponse
+from django.core.urlresolvers import reverse_lazy
 from apps.consulta.forms import ConsultaForm
 from apps.consulta.models import Consulta
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -40,3 +42,25 @@ def consulta_delete(request, id_consulta):
 		consulta.delete()
 		return redirect('consulta:consulta_listar')
 	return render(request, 'consulta/consulta_delete.html', {'consulta': consulta})
+
+class ConsultaList(ListView):
+	model = Consulta
+	template_name = 'consulta/consulta_list.html'
+	#paginate_by = 5
+
+class ConsultaCreate(CreateView):
+	model = Consulta
+	form_class = ConsultaForm
+	template_name = 'consulta/consulta_form.html'
+	succes_url = reverse_lazy('consulta:consulta_listar')
+
+class ConsultaUpdate(UpdateView):
+	model = Consulta
+	form_class = ConsultaForm
+	template_name = 'consulta/consulta_form.html'
+	succes_url = reverse_lazy('consulta:consulta_listar')
+
+class ConsultaDelete(DeleteView):
+	model = Consulta
+	template_name = 'consulta/consulta_delete.html'
+	succes_url = reverse_lazy('consulta:consulta_listar')

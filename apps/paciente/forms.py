@@ -30,7 +30,7 @@ class PacienteForm(forms.ModelForm):
 			'nombres': 'Nombres',
 			'apellidos': 'Apellidos',
 			'cedula': 'Cedula',
-			'fecha_nacimiento': 'Fecha de Nacimiento',
+			'fecha_nacimiento': 'Fecha de Nacimiento (DD-MM-YYYY)',
 			'edad': 'Edad',
 			'genero': 'Genero',
 			'tipo_sangre': 'Tipo de Sangre',

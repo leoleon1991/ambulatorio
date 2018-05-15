@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.core.urlresolvers import reverse_lazy
 from apps.medico.forms import MedicoForm
 from apps.medico.models import Medico
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -40,3 +42,26 @@ def medico_delete(request, id_medico):
 		medico.delete()
 		return redirect('medico:medico_listar')
 	return render(request, 'medico/medico_delete.html', {'medico': medico})
+
+class MedicoList(ListView):
+	model = Medico
+	template_name = 'medico/medico_list.html'
+	#paginate_by = 5
+
+class MedicoCreate(CreateView):
+	model = Medico
+	form_class = MedicoForm
+	template_name = 'medico/medico_form.html'
+	succes_url = reverse_lazy('medico:medico_listar')
+
+class MedicoUpdate(UpdateView):
+	model = Medico
+	form_class = MedicoForm
+	template_name = 'medico/medico_form.html'
+	succes_url = reverse_lazy('medico:medico_listar')
+
+class MedicoDelete(DeleteView):
+	model = Medico
+	template_name = 'medico/medico_delete.html'
+	succes_url = reverse_lazy('medico:medico_listar')
+
